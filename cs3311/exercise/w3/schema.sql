@@ -1,14 +1,6 @@
 -- COMP3311 Prac 03 Exercise
 -- Schema for simple company database
 
-constraint percentageConstraint check(
-	100 >= value + select sum(
-		select percentage
-		from WorksFor w
-		where w.employee = employee
-	)
-)
-
 create table Employees (
 	tfn         char(11) check (tfn ~ '[0-9]{3}-[0-9]{3}-[0-9]{3}'),
 	givenName   varchar(30) not null,
@@ -36,7 +28,7 @@ create table WorksFor (
 	employee    char(11) not null,
 	department  char(3) not null,
 	percentage  float check ((percentage between 0 and 100) and 
-		100 >= value + select sum(
+		100 >= percentage + select sum(
 			select percentage
 			from WorksFor w
 			where w.employee = employee
