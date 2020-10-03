@@ -27,13 +27,7 @@ create table DeptMissions (
 create table WorksFor (
 	employee    char(11) not null,
 	department  char(3) not null,
-	percentage  float check ((percentage between 0 and 100) and 
-		100 >= percentage + sum(
-			select percentage
-			from WorksFor w
-			where w.employee = employee
-		)
-	),
+	percentage  float check (percentage between 0 and 100),
 	foreign key (employee) references Employees(tfn),
 	foreign key (department) references Departments(id)
 );
