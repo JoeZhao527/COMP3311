@@ -1,0 +1,134 @@
+Q1: In the context of database application development (aka database engineering), what are the aims of data modelling?
+    Q:
+        null
+    A:
+        1. describe what information is contained in the database
+        2. describe the relationships between data items
+        3. describe the constraint on the data
+
+Q2: Describe the similarities and differences between the following similarly-named concepts:
+    Q:
+        a. relationship in the entity-relationship data model
+        b. relation in the relational data model
+    A:
+        relationships are used to model the associations between entities in the ER data model; 
+        relations are used to model both the relationship and the entities, 
+        it's like a table with a name and a set of attributes
+
+Q3: What kind of data, relationships and constraints exist in this scenario?
+    Q:
+        for each person, we need to record their tax file number (TFN), their real name, and their address;
+        everyone who earns money in Australia has a distinct tax file number;
+        authors write books, and may publish books using a ``pen-name'' (a name which appears as the author of the book and is different to their real name);
+        editors ensure that books are written in a manner that is suitable for publication;
+        every editor works for just one publisher;
+        editors and authors have quite different skills; someone who is an editor cannot be an author, and vice versa;
+        a book may have several authors, just one author, or no authors (published anonymously);
+        every book has one editor assigned to it, who liaises with the author(s) in getting the book ready for publication;
+        each book has a title, and an edition number (e.g. 1st, 2nd, 3rd);
+        each published book is assigned a unique 13-digit number (its ISBN); different editions of the same book will have different ISBNs;
+        publishers are companies that publish (market/distribute) books;
+        each publisher is required to have a unique Australian business number (ABN);
+        a publisher also has a name and address that need to be recorded;
+        a particular edition of a book is published by exactly one publisher;
+    A:
+        Objects:
+            person(+TFN, real name, address)
+            authors(*TFN, pen-name)
+            editors(*TFN, publisher)
+            books(title, edition number, ISBN, authors, editor)
+            publishers(+ABN, name, address)
+        Relationships:
+            authors -- write -- books
+            editors <-- edit -- books
+            publishers <-- publish -- books
+        Constraints:
+            each tax file number must be unique
+            a person cannot be an author and an editor at the same time
+            ISBN of a book must be unique
+
+Q4: Consider some typical operations in the myUNSW system ...
+    Q:
+        student enrols in a lab class,
+        student enrols in a course,
+        system prints a student transcript;
+        For each of these operations:
+        a. identify what data items are required
+        b. consider relationships between these data items
+        c. consider constraints on the data and relationships
+    A:
+        data item:
+            student(+zID, name, degree, courses-enrolled, timetable)
+            course(+coursCode, capacity, degree, pre-requisite, lectures, tutorials, labs)
+            lab(+labCode, time, *courseCode)
+        relationships:
+            student --- enrols -- course
+            student -- enrols -- lab
+        constraints:
+            zID, courseCode and labCode must all be unique
+
+Q5: Researchers work on different research projects, and the connection between them can be modelled by a WorksOn relationship. 
+    Q:
+        Consider the following two different ER diagrams to represent this situation. (diagram missing)
+        Describe the different semantics suggested by each of these diagrams.
+    A:
+        a. 
+            For each researcher, we record their name and a unique staff number;
+            Researchers work on projects;
+            each researcher can work on 0 or many projects;
+            each project can be worked at least one researchers;
+            each project has a title
+            - the time of a particular researcher worked on a certain project is recorded;
+        b. 
+            For each researcher, we record their name and a unique staff number;
+            Researchers work on projects;
+            each researcher can work on 0 or many projects;
+            each project can be worked at least one researchers;
+            each project has a title
+            - the total time of the all researchers worked on a certain project is recorded;
+
+Q7: The following two ER diagrams give alternative design choices for associating a person with their favourite types of food. 
+    Q:
+        Explain when you might choose to use the second rather than the first. (diagram missing)
+    A:
+        Choose the second beacuse cusine is a subclass of person and cusine can also like/dislike the person
+
+Q15: Describe each of the following core components of the relational model:
+    Q:
+        attribute
+        domain
+        relation schema
+        relational schema
+        tuple
+        relation
+        key
+        foreign key
+    A:
+        attribute: has a unique name within the relation and a domain
+        domain: a set of allowed values of an attribute
+        relation schema: a table that contains relation name (table name), attributes and keys
+        relational schema: a buleprint that outlines the way its organizes data into tables
+        tuple: a row of a table which contains a single record for that relation
+        relation: has a unique name within the database and a set of attributes
+        key: the attribute that uniquely identifies the relation
+        foreign key: 
+            attributes correspond to a primary key in the other relations;
+            tuple of the foriegn key either matches the corresponding primary key or be entirely NULL
+Q16: Why are duplicate tuples not allowed in relations?
+    Q:
+        null
+    A:
+        Beacuse it violates the specification of relation integarity, particularly the key constraint
+
+Q17: Consider the following simple relational schema:
+    Q:
+        too slack to copy paste
+    A:
+        R(1,a,b,c) and  R(1,x,y,z) cannot be both exist since a1 is a primary key
+        R(NULL, x,y,z) is not legal since a1 is a primary key and connot be NULL or duplicate
+        S(1, NULL, y) is not legal, primary key connot be NULL
+
+Questions:
+    Q17, S(1,NULL,y)
+    Q15, key
+    Q3, does --- means bold line?
