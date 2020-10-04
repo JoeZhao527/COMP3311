@@ -39,12 +39,6 @@ create table Calendar (
 	foreign key (owner) references Users(id)
 );
 
-create table alarms (
-	eventId	integer references Event(id),
-	alarmTime	time,
-	primary key (eventId, alarmTime)
-);
-
 create table Event (
 	id			serial,
 	title		text not null,
@@ -59,6 +53,12 @@ create table Event (
 	foreign key (createdBy) references Users(id),
 	foreign key (partOf) references Calendar(id)
 )
+
+create table alarms (
+	eventId	integer references Event(id),
+	alarmTime	time,
+	primary key (eventId, alarmTime)
+);
 
 create table OneDayEvent (
 	eventId	integer,
