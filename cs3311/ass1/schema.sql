@@ -25,8 +25,8 @@ create table Groups (
 	id          serial,
 	name        text not null,
 	owner		int,
-	foreign key (owner) references Users(id),
 	primary key (id)
+	foreign key (owner) references Users(id),
 );
 
 
@@ -36,6 +36,7 @@ create table Calendar (
 	owner	int,
 	colour	ColourType,
 	defalutAccess	AccessibilityType,
+	primary key (id),
 	foreign key (owner) references Users(id)
 );
 
@@ -47,8 +48,8 @@ create table Event (
 	endTime		time not null,
 	loacation	text not null,
 	property	EventType,
-	partOf		integer unique not null,
-	createdBy	integer unique not null,
+	partOf		integer not null,
+	createdBy	integer not null,
 	primary key (id),
 	foreign key (createdBy) references Users(id),
 	foreign key (partOf) references Calendar(id)
