@@ -52,7 +52,7 @@ create table Event (
 	primary key (id),
 	foreign key (createdBy) references Users(id),
 	foreign key (partOf) references Calendar(id)
-)
+);
 
 create table alarms (
 	eventId	integer references Event(id),
