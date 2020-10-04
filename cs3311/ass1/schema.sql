@@ -47,8 +47,8 @@ create table Event (
 	endTime		time not null,
 	loacation	text not null,
 	property	EventType,
-	partOf		integer not null,
-	createdBy	integer not null,
+	partOf		integer unique not null,
+	createdBy	integer unique not null,
 	primary key (id),
 	foreign key (createdBy) references Users(id),
 	foreign key (partOf) references Calendar(id)
