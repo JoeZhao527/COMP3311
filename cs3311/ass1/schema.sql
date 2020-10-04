@@ -25,8 +25,8 @@ create table Groups (
 	id          serial,
 	name        text not null,
 	owner		int,
-	primary key (id)
-	foreign key (owner) references Users(id),
+	primary key (id),
+	foreign key (owner) references Users(id)
 );
 
 
@@ -104,7 +104,7 @@ create table MonthByDateEvent(
 
 create table MonthByDayEvent (
 	eventId		integer,
-	dateInMonth	integer not null check (weekInMonth between 1 and 31),
+	dateInMonth	integer not null check (dateInMonth between 1 and 31),
 	primary key	(eventId),
 	foreign key (eventId) references RecurringEvent(eventId)
 );
