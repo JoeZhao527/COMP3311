@@ -43,7 +43,7 @@ create table Calendar (
 
 create table Event (
 	id			serial,
-	title		text,
+	title		text not null,
 	visibility 	text not null check (visibility in ('public', 'private')),
 	start_time	time,
 	end_time	time,
@@ -57,9 +57,9 @@ create table Event (
 );
 
 create table alarms (
-	id	integer references Event(id),
-	alarm_time	time,
-	primary key (id, alarm_time)
+	id		integer references Event(id),
+	alarm	time,
+	primary key (id, alarm)
 );
 
 create table one_day_event (
@@ -97,7 +97,7 @@ create table weekly_event(
 
 create table monthly_by_day_event(
 	id		integer,
-	dayOfWeek	WeekDayType,
+	dayOfWeek	WeekDayType not null,
 	week_in_month	integer not null check (week_in_month between 1 and 5),
 	primary key	(id),
 	foreign key (id) references recurring_event(id)
@@ -128,7 +128,7 @@ create table Member (
 create table Accessibility (
 	users_id 	integer references Users(id),
 	calendar_id	integer references Calendar(id),
-	access		AccessibilityType,
+	access		AccessibilityType not null,
 	primary key	(users_id, calendar_id)
 );
 
@@ -141,7 +141,7 @@ create table subscribed (
 
 create table invited(
 	users_id	integer references Users(id),
-	id			integer references Calendar(id),
+	event_id	integer references Calendar(event_id),
 	status 		InviteStatus not null,
-	primary key	(users_id, id)
+	primary key	(users_id, event_id)
 );
