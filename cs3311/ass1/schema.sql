@@ -59,8 +59,8 @@ create table Event (
 create table alarms (
 	event_id	integer,
 	alarm		interval,
-	foreign key event_id references Event(id),
-	primary key (event_id, alarm)
+	primary key (event_id, alarm),
+	foreign key (event_id) references Event(id)
 );
 
 create table one_day_event (
