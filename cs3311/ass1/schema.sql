@@ -18,7 +18,7 @@ create table Users (
 	name		text not null,
 	email       text not null unique,
 	passwd		text not null,
-	is_admin	boolean,
+	is_admin	boolean not null,
 	primary key (id)
 );
 
@@ -45,9 +45,9 @@ create table Event (
 	id			serial,
 	title		text,
 	visibility 	text not null check (visibility in ('public', 'private')),
-	start_time	time not null,
-	end_time	time not null,
-	location	text not null,
+	start_time	time,
+	end_time	time,
+	location	text,
 	part_of		integer not null,
 	created_by	integer not null,
 	event_type	EventType not null,
@@ -79,9 +79,9 @@ create table spanning_event (
 
 create table recurring_event (
 	id			integer,
-	ntimes		integer not null,
+	ntimes		integer,
 	start_date	date not null,
-	end_date	date not null,
+	end_date	date,
 	primary key (id),
 	foreign key (id) references Event(id)
 
@@ -95,7 +95,7 @@ create table weekly_event(
 	foreign key (id) references recurring_event(id)
 );
 
-create table monthly_by_date_event(
+create table monthly_by_day_event(
 	id		integer,
 	dayOfWeek	WeekDayType,
 	week_in_month	integer not null check (week_in_month between 1 and 5),
@@ -103,7 +103,7 @@ create table monthly_by_date_event(
 	foreign key (id) references recurring_event(id)
 );
 
-create table monthly_by_day_event (
+create table monthly_by_date_event (
 	id		integer,
 	date_in_month	integer not null check (date_in_month between 1 and 31),
 	primary key	(id),
@@ -112,7 +112,7 @@ create table monthly_by_day_event (
 
 create table annual_event (
 	id		integer,
-	date_in_month	date not null,
+	date	date not null,
 	primary key	(id),
 	foreign key (id) references recurring_event(id)
 );
@@ -141,7 +141,7 @@ create table subscribed (
 
 create table invited(
 	users_id	integer references Users(id),
-	id	integer references Calendar(id),
-	status 		InviteStatus,
+	id			integer references Calendar(id),
+	status 		InviteStatus not null,
 	primary key	(users_id, id)
 );
