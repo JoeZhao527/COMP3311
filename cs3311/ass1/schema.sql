@@ -35,7 +35,7 @@ create table Calendar (
 	id		serial,
 	name	text not null,
 	owner	int not null,
-	colour	ColourType not null,
+	colour	text not null,
 	default_access	AccessibilityType not null,
 	primary key (id),
 	foreign key (owner) references Users(id)
@@ -135,7 +135,7 @@ create table Accessibility (
 create table subscribed (
 	users_id 	integer references Users(id),
 	calendar_id	integer references Calendar(id),
-	colour		ColourType,
+	colour		text,
 	primary key	(users_id, calendar_id)
 );
 
