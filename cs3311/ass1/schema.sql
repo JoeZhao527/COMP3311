@@ -35,7 +35,7 @@ create table Calendar (
 	name	text not null,
 	owner	int,
 	colour	ColourType,
-	defalutAccess	AccessibilityType,
+	defalut_access	AccessibilityType,
 	primary key (id),
 	foreign key (owner) references Users(id)
 );
@@ -44,76 +44,76 @@ create table Event (
 	id			serial,
 	title		text not null,
 	visibility 	text check (visibility in ('public', 'private')),
-	startTime	time not null,
-	endTime		time not null,
+	start_time	time not null,
+	end_time		time not null,
 	loacation	text not null,
 	property	EventType,
-	partOf		integer not null,
-	createdBy	integer not null,
+	part_of		integer not null,
+	created_by	integer not null,
 	primary key (id),
-	foreign key (createdBy) references Users(id),
-	foreign key (partOf) references Calendar(id)
+	foreign key (created_by) references Users(id),
+	foreign key (part_of) references Calendar(id)
 );
 
 create table alarms (
-	eventId	integer references Event(id),
-	alarmTime	time,
-	primary key (eventId, alarmTime)
+	event_id	integer references Event(id),
+	alarm_time	time,
+	primary key (event_id, alarm_time)
 );
 
-create table OneDayEvent (
-	eventId	integer,
-	eventDate	date not null,
-	primary key (eventId),
-	foreign key	(eventId) references Event(id)
+create table one_day_event (
+	event_id	integer,
+	event_date	date not null,
+	primary key (event_id),
+	foreign key	(event_id) references Event(id)
 );
 
-create table SpanningEvent (
-	eventId	integer,
-	startDate	date not null,
-	endDate	date not null,
-	primary key (eventId),
-	foreign key (eventId) references Event(id)
+create table spanning_event (
+	event_id		integer,
+	start_date	date not null,
+	end_date		date not null,
+	primary key (event_id),
+	foreign key (event_id) references Event(id)
 );
 
-create table RecurringEvent (
-	eventId	integer,
+create table recurring_event (
+	event_id	integer,
 	ntimes		integer not null,
-	startDate	date not null,
-	endDate	date,
-	primary key (eventId),
-	foreign key (eventId) references Event(id)
+	start_date	date not null,
+	end_date	date,
+	primary key (event_id),
+	foreign key (event_id) references Event(id)
 
 );
 
-create table WeeklyEvent(
-	eventId		integer,
-	dayOfWeek	WeekDayType,
+create table weekly_event(
+	event_id		integer,
+	day_of_week	WeekDayType,
 	frequency	integer not null check (frequency > 0),
-	primary key	(eventId),
-	foreign key (eventId) references RecurringEvent(eventId)
+	primary key	(event_id),
+	foreign key (event_id) references RecurringEvent(event_id)
 );
 
-create table MonthByDateEvent(
-	eventId		integer,
+create table month_by_date_event(
+	event_id		integer,
 	dayOfWeek	WeekDayType,
-	weekInMonth	integer not null check (weekInMonth between 1 and 5),
-	primary key	(eventId),
-	foreign key (eventId) references RecurringEvent(eventId)
+	week_in_month	integer not null check (week_in_month between 1 and 5),
+	primary key	(event_id),
+	foreign key (event_id) references RecurringEvent(event_id)
 );
 
-create table MonthByDayEvent (
-	eventId		integer,
-	dateInMonth	integer not null check (dateInMonth between 1 and 31),
-	primary key	(eventId),
-	foreign key (eventId) references RecurringEvent(eventId)
+create table month_by_day_event (
+	event_id		integer,
+	date_in_month	integer not null check (date_in_month between 1 and 31),
+	primary key	(event_id),
+	foreign key (event_id) references RecurringEvent(event_id)
 );
 
-create table AnnulEvent (
-	eventId		integer,
-	dateInMonth	date not null,
-	primary key	(eventId),
-	foreign key (eventId) references RecurringEvent(eventId)
+create table annul_event (
+	event_id		integer,
+	date_in_month	date not null,
+	primary key	(event_id),
+	foreign key (event_id) references RecurringEvent(event_id)
 );
 
 -- relationships
