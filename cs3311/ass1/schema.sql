@@ -57,8 +57,9 @@ create table Event (
 );
 
 create table alarms (
-	event_id		integer references Event(id),
-	alarm	interval,
+	event_id	integer,
+	alarm		interval,
+	foreign key event_id references Event(id),
 	primary key (event_id, alarm)
 );
 
@@ -120,28 +121,36 @@ create table annual_event (
 -- relationships
 
 create table Member (
-	users_id 	integer references Users(id),
-	groups_id	integer references Groups(id),
-	primary key	(users_id, groups_id)
+	users_id 	integer,
+	groups_id	integer,
+	primary key	(users_id, groups_id),
+	foreign key (users_id) references Users(id),
+	foreign key (groups_id) references Groups(id)
 );
 
 create table Accessibility (
-	users_id 	integer references Users(id),
-	calendar_id	integer references Calendar(id),
+	users_id 	integer,
+	calendar_id	integer,
 	access		AccessibilityType not null,
-	primary key	(users_id, calendar_id)
+	primary key	(users_id, calendar_id),
+	foreign key (users_id) references Users(id),
+	foreign key (calendar_id) references Calendar(id)
 );
 
 create table subscribed (
-	users_id 	integer references Users(id),
-	calendar_id	integer references Calendar(id),
+	users_id 	integer,
+	calendar_id	integer,
 	colour		text,
-	primary key	(users_id, calendar_id)
+	primary key	(users_id, calendar_id),
+	foreign key (users_id) references Users(id),
+	foreign key (calendar_id) references Calendar(id)
 );
 
 create table invited(
-	users_id	integer references Users(id),
-	event_id	integer references Calendar(id),
+	users_id	integer,
+	event_id	integer,
 	status 		InviteStatus not null,
-	primary key	(users_id, event_id)
+	primary key	(users_id, event_id),
+	foreign key (users_id) references Users(id),
+	foreign key (event_id) references Calendar(id)
 );
