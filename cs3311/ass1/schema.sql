@@ -58,7 +58,7 @@ create table Event (
 
 create table alarms (
 	id		integer references Event(id),
-	alarm	time,
+	alarm	interval,
 	primary key (id, alarm)
 );
 
