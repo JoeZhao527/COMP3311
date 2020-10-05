@@ -6,7 +6,7 @@
 
 create type AccessibilityType as enum ('read-write','read-only','none');
 create type InviteStatus as enum ('invited','accepted','declined');
-create type ColourType as enum ('red', 'blue', 'green', 'yellow', 'black', 'white');
+create type VisibilityType as enum ('public', 'private');
 create type EventType as enum ('one-day', 'spanning', 'recurring');
 create type WeekDayType as enum ('mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun');
 -- add more types/domains if you want
@@ -44,7 +44,7 @@ create table Calendar (
 create table Event (
 	id			serial,
 	title		text not null,
-	visibility 	text not null check (visibility in ('public', 'private')),
+	visibility 	VisibilityType not null,
 	start_time	time,
 	end_time	time,
 	location	text,
@@ -63,8 +63,8 @@ create table alarms (
 );
 
 create table one_day_event (
-	id			integer,
-	event_date	date not null,
+	id		integer,
+	date	date not null,
 	primary key (id),
 	foreign key	(id) references Event(id)
 );
