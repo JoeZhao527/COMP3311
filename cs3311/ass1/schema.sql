@@ -141,7 +141,7 @@ create table subscribed (
 
 create table invited(
 	users_id	integer references Users(id),
-	event_id	integer references Calendar(event_id),
+	event_id	integer references Calendar(id),
 	status 		InviteStatus not null,
 	primary key	(users_id, event_id)
 );
