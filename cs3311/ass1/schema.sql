@@ -44,7 +44,7 @@ create table Calendar (
 create table Event (
 	id			serial,
 	title		text,
-	visibility 	text not null and check (visibility in ('public', 'private')),
+	visibility 	text not null check (visibility in ('public', 'private')),
 	start_time	time not null,
 	end_time	time not null,
 	location	text not null,
