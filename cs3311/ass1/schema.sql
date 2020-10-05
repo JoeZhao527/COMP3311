@@ -91,7 +91,7 @@ create table weekly_event(
 	day_of_week	WeekDayType,
 	frequency	integer not null check (frequency > 0),
 	primary key	(event_id),
-	foreign key (event_id) references RecurringEvent(event_id)
+	foreign key (event_id) references recurring_event(event_id)
 );
 
 create table month_by_date_event(
@@ -99,21 +99,21 @@ create table month_by_date_event(
 	dayOfWeek	WeekDayType,
 	week_in_month	integer not null check (week_in_month between 1 and 5),
 	primary key	(event_id),
-	foreign key (event_id) references RecurringEvent(event_id)
+	foreign key (event_id) references recurring_event(event_id)
 );
 
 create table month_by_day_event (
 	event_id		integer,
 	date_in_month	integer not null check (date_in_month between 1 and 31),
 	primary key	(event_id),
-	foreign key (event_id) references RecurringEvent(event_id)
+	foreign key (event_id) references recurring_event(event_id)
 );
 
 create table annul_event (
 	event_id		integer,
 	date_in_month	date not null,
 	primary key	(event_id),
-	foreign key (event_id) references RecurringEvent(event_id)
+	foreign key (event_id) references recurring_event(event_id)
 );
 
 -- relationships
