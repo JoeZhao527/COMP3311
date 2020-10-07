@@ -1,6 +1,6 @@
 create table Account (
-    accountNo   text,
     branchName  text not null,
+    accountNo   text,
     balance     integer not null,
     primary key (accountNo)
 );
