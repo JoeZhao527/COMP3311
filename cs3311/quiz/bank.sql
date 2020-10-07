@@ -8,6 +8,6 @@ create table Account (
 create table Owner (
     account     text,
     customer    integer,
-    primary key (account),
+    primary key (account,customer),
     foreign key (account) references Account(accountNo)
 );
