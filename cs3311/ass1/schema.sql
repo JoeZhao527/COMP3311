@@ -1,6 +1,6 @@
 -- COMP3311 20T3 Assignment 1
 -- Calendar schema
--- Written by INSERT YOUR NAME HERE
+-- Written by Haokai (Joe) Zhao
 
 -- Types
 
@@ -9,7 +9,6 @@ create type InviteStatus as enum ('invited','accepted','declined');
 create type VisibilityType as enum ('public', 'private');
 create type EventType as enum ('one-day', 'spanning', 'recurring');
 create type WeekDayType as enum ('mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun');
--- add more types/domains if you want
 
 -- Tables
 
