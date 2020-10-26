@@ -3,17 +3,15 @@
 -- Q1. What beers are made by Toohey's?
 
 create or replace view Q1 as
-select ...
-from   ...
-where  ...
+    select  b.name
+    from    Beers b join Brewers r on (b.brewer = r.id)
+    where   r.name = 'Toohey''s'
 ;
 
 -- Q2. Show beers with headings "Beer", "Brewer".
 
 create or replace view Q2 as
-select ...
-from   ...
-where  ...
+    
 ;
 
 -- Q3. Find the brewers whose beers John likes.
