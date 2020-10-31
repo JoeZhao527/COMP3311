@@ -100,7 +100,7 @@ create or replace function
    Q7(_subject text)
      returns table (subject text, term text, convenor text)
 as $$
-   select   sub.code :: text, t.name, p.name
+   select   sub.code :: text, termname(t.id), p.name
    from     Subjects sub
       join  Courses c on (c.subject = sub.id)
       join  Course_staff sta on (sta.course = c.id)
