@@ -2,7 +2,7 @@
 
 -- Q1: students who've studied many courses
 
-create view Q1(unswid,name)
+create or replace view Q1(unswid,name)
 as
    select p.unswid, p.name
    from   Students s
@@ -53,7 +53,7 @@ as
       join Program_enrolments e on (e.student = s.id)
       join Programs prog on (prog.id = e.program)
       join Terms t on (t.id = e.term)
-   where t.name = 'Sem2 2005' and prog.code = '3978'
+   where termname(t.id) = '05s2' and prog.code = '3978'
 ;
 
 create or replace view Q4b(id,name)
@@ -64,7 +64,7 @@ as
       join Program_enrolments e on (e.student = s.id)
       join Programs prog on (prog.id = e.program)
       join Terms t on (t.id = e.term)
-   where t.name = 'Sem1 2017' and prog.code = '3778'
+   where termname(t.id)= '17s1' and prog.code = '3778'
 ;
 
 -- Q5: most "committee"d faculty
@@ -174,7 +174,7 @@ as $$
       result.grade := null;
       if UOCpassed > 0 then
          result.name = 'Overall WAM/UOC';
-         result.mark = round(weightedSumOfMarks/totalUOCattempted);
+         result.mark = weightedSumOfMarks/totalUOCattempted;
          result.uoc = UOCpassed;
       else
          result.name = 'No WAM availiable';
