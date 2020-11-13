@@ -31,7 +31,7 @@ try:
   db = psycopg2.connect("dbname=imdb")
   # ... add your code here ...
   cur = db.cursor()
-  cur.exectue(qry, N)
+  cur.execute(qry, N)
   for i in cur.fetchall():
     print(i[0] + i[1] + i[2])
 except psycopg2.Error as err:
