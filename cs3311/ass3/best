@@ -24,7 +24,7 @@ elif argc != 1:
 qry = """
 select rating, title, start_year
 from  Movies
-order by rating ASC, title
+order by rating DESC, title
 limit %s
 """
 try:
