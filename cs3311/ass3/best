@@ -33,7 +33,7 @@ try:
   cur = db.cursor()
   cur.execute(qry, [N])
   for i in cur.fetchall():
-    print(i[0], i[1], '(' + i[2]+ ')')
+    print(i[0], i[1], '(' + str(i[2])+ ')')
 except psycopg2.Error as err:
   print("DB error: ", err)
 finally:
