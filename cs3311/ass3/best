@@ -8,18 +8,18 @@ import psycopg2
 # define any local helper functions here
 
 # set up some globals
-
 usage = "Usage: best [N]"
 db = None
 N = 10
-# process command-line args
 
+# process command-line args
 argc = len(sys.argv)
 if argc == 2 and sys.argv[1].isdigit() and int(sys.argv[1]) > 0:
   N = int(sys.argv[1])
 elif argc != 1:
   print(usage)
   exit()
+
 # manipulate database
 qry = """
 select rating, title, start_year
@@ -27,9 +27,9 @@ from  Movies
 order by rating DESC, title
 limit %s
 """
+
 try:
   db = psycopg2.connect("dbname=imdb")
-  # ... add your code here ...
   cur = db.cursor()
   cur.execute(qry, [N])
   for i in cur.fetchall():
