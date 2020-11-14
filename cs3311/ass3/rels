@@ -23,8 +23,7 @@ if argc != 2:
 select_movie = """
 select m.title, m.start_year, m.id
 from Movies m
-  join  Aliases a on (a.movie_id = m.id)
-  where m.title ~* %s
+where m.title ~* %s
 """
 select_aliases = """
 select local_title, region, language
@@ -35,6 +34,7 @@ try:
   db = psycopg2.connect("dbname=imdb")
   # ... add your code here ...
   partial_name = [sys.argv[1]]
+  print(partial_name)
   cur = db.cursor()
   cur.execute(select_movie, partial_name)
   num_movie = len(list(cur))
