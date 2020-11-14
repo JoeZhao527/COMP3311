@@ -94,7 +94,7 @@ try:
     print('===============')
     cur.execute(select_movies, [name_id])
     for movies in cur.fetchall():
-      print(movie[0], '('+str(movie[1])+')')
+      print(movies[0], '('+str(movies[1])+')')
       cur.execute(select_actors, (movies[2], name_id))
       for acting in cur.fetchall():
         print('  playing', acting[1])
