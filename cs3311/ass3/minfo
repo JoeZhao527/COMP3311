@@ -66,7 +66,7 @@ try:
   if year == None:
     cur.execute(select_movie1, [pattern])
     num_movie = len(list(cur))
-    cur.execute(select_movie2, [pattern])
+    cur.execute(select_movie1, [pattern])
   else:
     cur.execute(select_movie2, [pattern], [year])
     num_movie = len(list(cur))
