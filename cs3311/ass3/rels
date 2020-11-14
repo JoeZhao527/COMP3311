@@ -37,14 +37,13 @@ try:
   print(partial_name)
   cur = db.cursor()
   cur.execute(select_movie, partial_name)
-  num_movie = 3
+  num_movie = len(cur.fetchall())
 
   if num_movie > 1:
     print('Movies matching \''+partial_name[0]+'\'')
     print('===============')
     for movie in cur.fetchall():
-        print("?")
-        print(movie[0], '('+movie[1]+')')
+        print(movie[0], '('+str(movie[1])+')')
   elif num_movie == 1:
     for movie in cur.fetchone():
       print(movie[0], '('+movie[1]+')', 'was also released as')
