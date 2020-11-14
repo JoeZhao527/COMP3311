@@ -53,7 +53,7 @@ from Movies m
   join  Acting_roles a on (m.id = a.movie_id)
   join  Principals p on (m.id = p.movie_id and a.name_id = p.name_id)
   join  Names n on (n.id = a.name_id)
-where m.id = %s, n.id = %s
+where m.id = %s and n.id = %s
 order by p.ordering, a.played
 """
 select_crews = """
@@ -62,7 +62,7 @@ from  Movies m
   join  Crew_roles c on (m.id = c.movie_id)
   join  Principals p on (m.id = p.movie_id and c.name_id = p.name_id)
   join  Names n on (n.id = c.name_id)
-where m.id = %s, n.id = %s
+where m.id = %s and n.id = %s
 order by p.ordering, c.role
 """
 try:
