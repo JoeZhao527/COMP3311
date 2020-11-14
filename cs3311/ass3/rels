@@ -62,7 +62,7 @@ try:
         # print the aliases
         print('\''+alia[1]+'\'', comb)
   else:
-    print('No movie matching \'%s\'',partial_name[0])
+    print('No movie matching \''+partial_name[0]+'\'')
 except psycopg2.Error as err:
   print("DB error: ", err)
 finally:
