@@ -24,7 +24,7 @@ select_movie = """
 select m.title, m.start_year, m.id
 from Moives m
   join  Aliases a on (a.movie_id = m.id)
-  where m.title ~* '%s'
+  where m.title ~* %s
 """
 select_aliases = """
 select local_title, region, language
