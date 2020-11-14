@@ -52,11 +52,11 @@ try:
         comb = ''
         # handle the region and language
         if alia[1] != None:
-          comb = 'region:'+alia[1]
+          comb = 'region: '+alia[1]
           if alia[2] != None:
-            comb = comb+', language:'+alia[2]
+            comb = comb.strip(' ')+', language: '+alia[2]
         if alia[1] == None and alia[2] != None:
-          comb = 'language:'+alia[2]
+          comb = 'language: '+alia[2]
         if comb != '':
           comb = '('+comb.strip(' ')+')'
         # print the aliases
