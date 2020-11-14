@@ -47,8 +47,8 @@ try:
         print(movie[0], '('+str(movie[1])+')')
   elif num_movie == 1:
     for movie in cur.fetchone():
-      print(movie[0], '('+movie[1]+')', 'was also released as')
-      cur.execute(select_aliases, movie[2])
+      print(movie[0], '('+str(movie[1])+')', 'was also released as')
+      cur.execute(select_aliases, [movie[2]])
       for alia in cur.fetchall():
         comb = ''
         # handle the region and language
