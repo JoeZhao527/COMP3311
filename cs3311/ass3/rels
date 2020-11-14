@@ -48,7 +48,7 @@ try:
   elif num_movie == 1:
     for movie in cur.fetchone():
       print(movie[0], '('+str(movie[1])+')', 'was also released as')
-      print([movie[2]])
+      print([movie)
       cur.execute(select_aliases, [int(movie[2])])
       for alia in cur.fetchall():
         comb = ''
