@@ -37,7 +37,7 @@ try:
   print(partial_name)
   cur = db.cursor()
   cur.execute(select_movie, partial_name)
-  num_movie = len(list(cur))
+  num_movie = 3
 
   if num_movie > 1:
     print('Movies matching \''+partial_name[0]+'\'')
