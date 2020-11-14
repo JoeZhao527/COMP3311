@@ -22,7 +22,7 @@ if argc != 2:
 # manipulate database
 select_movie = """
 select m.title, m.start_year, m.id
-from Moives m
+from Movies m
   join  Aliases a on (a.movie_id = m.id)
   where m.title ~* %s
 """
@@ -43,11 +43,11 @@ try:
     print('Movies matching \'%s\'', partial_name[0])
     print('===============')
     for movie in cur.fetchall():
-        print(moive[0], '('+movie[1]+')')
+        print(movie[0], '('+movie[1]+')')
   elif num_movie == 1:
     for movie in cur.fetchone():
-      print(moive[0], '('+movie[1]+')', 'was also released as')
-      cur.execute(select_aliases, moive[2])
+      print(movie[0], '('+movie[1]+')', 'was also released as')
+      cur.execute(select_aliases, movie[2])
       for alia in cur.fetchall():
         comb = ''
         # handle the region and language
