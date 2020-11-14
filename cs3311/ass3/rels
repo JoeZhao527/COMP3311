@@ -48,7 +48,6 @@ try:
   elif num_movie == 1:
     for movie in cur.fetchall():
       print(movie[0], '('+str(movie[1])+')', 'was also released as')
-      print([movie])
       cur.execute(select_aliases, [int(movie[2])])
       for alia in cur.fetchall():
         comb = ''
@@ -62,7 +61,7 @@ try:
         if comb != '':
           comb = '('+comb+')'
         # print the aliases
-        print('\''+alia[1]+'\'', comb)
+        print('\''+alia[0]+'\'', comb)
   else:
     print('No movie matching \''+partial_name[0]+'\'')
 except psycopg2.Error as err:
