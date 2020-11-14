@@ -89,7 +89,7 @@ try:
       elif names[2] == None:
         print(names[0], '('+str(names[1])+'-)')
       else:
-        print(names[0], '('+str(names[1])+'-'+names[2]+')')
+        print(names[0], '('+str(names[1])+'-'+str(names[2])+')')
       name_id = names[3]
     print('===============')
     cur.execute(select_movies, [name_id])
