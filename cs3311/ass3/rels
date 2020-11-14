@@ -58,7 +58,7 @@ try:
         if alia[1] == None and alia[2] != None:
           comb = 'language:'+alia[2]
         if comb != '':
-          comb = '('+comb.strip([' '])+')'
+          comb = '('+comb.strip(' ')+')'
         # print the aliases
         print('\''+alia[0]+'\'', comb)
   else:
