@@ -40,7 +40,7 @@ try:
   num_movie = len(list(cur))
 
   if num_movie > 1:
-    print('Movies matching \'%s\'', partial_name[0])
+    print('Movies matching \''+partial_name[0]+'\'')
     print('===============')
     for movie in cur.fetchall():
         print(movie[0], '('+movie[1]+')')
