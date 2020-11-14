@@ -18,12 +18,12 @@ input = None
 
 argc = len(sys.argv)
 if argc == 2:
-  pattern = [sys.argv[1]]
-  input = '\''+pattern[0]+'\''
+  pattern = sys.argv[1]
+  input = '\''+pattern+'\''
 elif argc == 3 and (sys.argv[2]).isdigit():
-  pattern = [sys.argv[1]]
-  year = [sys.argv[2]]
-  input = '\''+pattern[0]+'\''+' '+str(year[0])
+  pattern = sys.argv[1]
+  year = sys.argv[2]
+  input = '\''+pattern+'\''+' '+str(year)
 else:
   print(usage)
   exit()
