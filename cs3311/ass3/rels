@@ -43,6 +43,7 @@ try:
     print('Movies matching \''+partial_name[0]+'\'')
     print('===============')
     for movie in cur.fetchall():
+        print("?")
         print(movie[0], '('+movie[1]+')')
   elif num_movie == 1:
     for movie in cur.fetchone():
