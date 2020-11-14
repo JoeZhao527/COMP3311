@@ -28,7 +28,7 @@ where m.title ~* %s
 select_aliases = """
 select local_title, region, language
 from Aliases a
-where a.movie_id = %s
+where a.movie_id = %d
 """
 try:
   db = psycopg2.connect("dbname=imdb")
