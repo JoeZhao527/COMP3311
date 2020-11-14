@@ -68,9 +68,9 @@ try:
     num_movie = len(list(cur))
     cur.execute(select_movie1, [pattern])
   else:
-    cur.execute(select_movie2, ([pattern], [year]))
+    cur.execute(select_movie2, (pattern, year))
     num_movie = len(list(cur))
-    cur.execute(select_movie2, ([pattern], [year]))
+    cur.execute(select_movie2, (pattern, year))
   
   if num_movie == 0:
     print('No movie matching '+input)
