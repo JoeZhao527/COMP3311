@@ -34,7 +34,7 @@ where a.movie_id = %s
 try:
   db = psycopg2.connect("dbname=imdb")
   # ... add your code here ...
-  partial_name = [argv[1]]
+  partial_name = [sys.argv[1]]
   cur = db.cursor()
   cur.execute(select_movie, partial_name)
   num_movie = len(list(cur))
