@@ -60,7 +60,7 @@ order by p.ordering, c.role
 
 try:
   db = psycopg2.connect("dbname=imdb")
-  cur = db.sursor()
+  cur = db.cursor()
   # ... add your code here ...
   num_movie = 0
   if year == None:
