@@ -26,9 +26,10 @@ from Movies m
 where m.title ~* %s
 """
 select_aliases = """
-select local_title, region, language
+select local_title, region, language, extra_info
 from Aliases a
 where a.movie_id = %s
+order by a.ordering
 """
 try:
   db = psycopg2.connect("dbname=imdb")
@@ -59,6 +60,8 @@ try:
           comb = 'language: '+alia[2]
         if comb != '':
           comb = '('+comb.strip(' ')+')'
+        elif comb == '' and alia[4] != None:
+          comb = '('+alia[4]+')'
         # print the aliases
         print('\''+alia[0]+'\'', comb)
   else:
