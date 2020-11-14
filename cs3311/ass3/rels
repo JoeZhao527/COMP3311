@@ -34,7 +34,6 @@ try:
   db = psycopg2.connect("dbname=imdb")
   # ... add your code here ...
   partial_name = [sys.argv[1]]
-  print(partial_name)
   cur = db.cursor()
   cur.execute(select_movie, partial_name)
   num_movie = len(list(cur))
@@ -59,7 +58,7 @@ try:
         if alia[1] == None and alia[2] != None:
           comb = 'language:'+alia[2]
         if comb != '':
-          comb = '('+comb+')'
+          comb = '('+comb.strip([' '])+')'
         # print the aliases
         print('\''+alia[0]+'\'', comb)
   else:
