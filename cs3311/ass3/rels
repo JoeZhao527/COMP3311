@@ -3,6 +3,7 @@
 
 import sys
 import psycopg2
+import helpers
 #from helpers import whatever, functions, you, need
 
 # define any local helper functions here
@@ -11,13 +12,15 @@ import psycopg2
 
 usage = "Usage: rels 'PartialMovieTitle'"
 db = None
+pattern = None
 
-# process command-line args
-
+# check input
 argc = len(sys.argv)
 if argc != 2:
   print(usage)
   exit()
+
+_, pattern, _ = construct_input(sys.argv)
 
 # manipulate database
 select_movie = """
@@ -35,17 +38,15 @@ order by a.ordering
 try:
   db = psycopg2.connect("dbname=imdb")
   # ... add your code here ...
-  partial_name = [sys.argv[1]]
   cur = db.cursor()
-  cur.execute(select_movie, partial_name)
+  cur.execute(select_movie, [pattern])
   num_movie = len(list(cur))
-  cur.execute(select_movie, partial_name)
+  cur.execute(select_movie, [pattern])
 
-  if num_movie > 1:
-    print('Movies matching \''+partial_name[0]+'\'')
-    print('===============')
-    for movie in cur.fetchall():
-        print(movie[0], '('+str(movie[1])+')')
+  if num_movie < 1:
+    print_not_found(pattern, 'movie')
+  elif num_movie > 1:
+    print_moive(pattern, cur.fetchall())
   elif num_movie == 1:
     for movie in cur.fetchall():
       print(movie[0], '('+str(movie[1])+')', 'was also released as')
@@ -65,8 +66,6 @@ try:
           comb = '('+alia[4]+')'
         # print the aliases
         print('\''+alia[0]+'\'', comb)
-  else:
-    print('No movie matching \''+partial_name[0]+'\'')
 except psycopg2.Error as err:
   print("DB error: ", err)
 finally:
