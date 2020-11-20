@@ -46,6 +46,7 @@ select m.title, m.start_year, m.id
 from Movies m
   join Principals p on (m.id = p.movie_id)
 where p.name_id = %s
+order by m.start_year, m.title
 """
 select_actors = """
 select n.name, a.played
