@@ -86,7 +86,7 @@ try:
     name_id = None
     for names in cur.fetchall():
       if names[1] == None:
-        print(names[0], '(???)')
+        print('Filmography for '+names[0], '(???)')
       elif names[2] == None:
         print('Filmography for '+names[0], '('+str(names[1])+'-)')
       else:
