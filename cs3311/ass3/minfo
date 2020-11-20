@@ -33,11 +33,13 @@ select_movie1 = """
 select m.title, m.start_year, m.id
 from Movies m
 where m.title ~* %s
+order by m.start_year, m.title
 """
 select_movie2 = """
 select m.title, m.start_year, m.id
 from Movies m
 where m.title ~* %s and m.start_year = %s;
+order by m.start_year, m.title
 """
 select_actors = """
 select n.name, a.played
@@ -81,7 +83,7 @@ try:
       movie_id = movie[2]
       cur.execute(select_actors, [movie_id])
       for actor in cur.fetchall():
-        print('  '+actor[0], 'as', actor[1])
+        print(' '+actor[0], 'as', actor[1])
       print('and with')
       cur.execute(select_crews, [movie_id])
       for crew in cur.fetchall():
