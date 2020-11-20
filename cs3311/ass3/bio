@@ -110,7 +110,7 @@ try:
       elif names[2] == None:
         print(names[0], '('+str(names[1])+'-)')
       else:
-        print(names[0], '('+str(names[1])+'-'+names[2]+')')
+        print(names[0], '('+str(names[1])+'-'+str(names[2])+')')
 except psycopg2.Error as err:
   print("DB error: ", err)
 finally:

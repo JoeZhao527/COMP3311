@@ -85,7 +85,7 @@ try:
       print('and with')
       cur.execute(select_crews, [movie_id])
       for crew in cur.fetchall():
-        print('  '+crew[0]+':', crew[1])
+        print('  '+crew[0]+':', crew[1].capitalize())
   elif num_movie > 1:
     print('Movies matching '+input)
     print('===============')
