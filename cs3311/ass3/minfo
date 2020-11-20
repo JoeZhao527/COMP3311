@@ -38,7 +38,7 @@ order by m.start_year, m.title
 select_movie2 = """
 select m.title, m.start_year, m.id
 from Movies m
-where m.title ~* %s and m.start_year = %s;
+where m.title ~* %s and m.start_year = %s
 order by m.start_year, m.title
 """
 select_actors = """
