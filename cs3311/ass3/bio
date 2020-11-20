@@ -33,13 +33,13 @@ select_names1 = """
 select name, birth_year, death_year, id
 from Names n
 where n.name ~* %s
-order by birth_year, n.id;
+order by name, birth_year, n.id;
 """
 select_names2 = """
 select name, birth_year, death_year, id
 from Names n
 where n.name ~* %s and birth_year = %s
-order by birth_year, n.id;
+order by name, birth_year, n.id;
 """
 select_movies = """
 select m.title, m.start_year, m.id
