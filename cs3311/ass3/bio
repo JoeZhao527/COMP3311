@@ -101,7 +101,7 @@ try:
         print(' playing', acting[1])
       cur.execute(select_crews, (movies[2], name_id))
       for crewing in cur.fetchall():
-        print(' as', crewing[1].capitalize())
+        print(' as', (crewing[1].capitalize()).replace('_', ' '))
   else:
     print('Names matching '+input)
     print('===============')
