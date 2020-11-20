@@ -97,10 +97,10 @@ try:
       print(movies[0], '('+str(movies[1])+')')
       cur.execute(select_actors, (movies[2], name_id))
       for acting in cur.fetchall():
-        print('  playing', acting[1])
+        print(' playing', acting[1])
       cur.execute(select_crews, (movies[2], name_id))
       for crewing in cur.fetchall():
-        print('  as', crewing[1])
+        print(' as', crewing[1])
   else:
     print('Names matching '+input)
     print('===============')
