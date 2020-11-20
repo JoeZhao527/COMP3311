@@ -3,7 +3,7 @@
 
 import sys
 import psycopg2
-from . import helpers
+from .helpers import *
 #from helpers import whatever, functions, you, need
 
 # define any local helper functions here
