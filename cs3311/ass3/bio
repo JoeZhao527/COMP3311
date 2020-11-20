@@ -38,7 +38,7 @@ order by birth_year, n.id;
 select_names2 = """
 select name, birth_year, death_year, id
 from Names n
-where n.name ~* %s, birth_year = %s
+where n.name ~* %s and birth_year = %s
 order by birth_year, n.id;
 """
 select_movies = """
