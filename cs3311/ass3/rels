@@ -24,12 +24,13 @@ select_movie = """
 select m.title, m.start_year, m.id
 from Movies m
 where m.title ~* %s
+order by m.start_year, m.title
 """
 select_aliases = """
 select local_title, region, language, extra_info
 from Aliases a
 where a.movie_id = %s
-order by a.ordering
+order by a.ordering 
 """
 try:
   db = psycopg2.connect("dbname=imdb")
